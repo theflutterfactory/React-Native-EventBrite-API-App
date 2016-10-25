@@ -19,9 +19,9 @@ export default class Main extends Component {
             dataSource: ds.cloneWithRows([
                 {
                     name: {
-                        text: 'Event 1'
+                        text: ''
                     },
-                    url: 'www.randomurl.com'
+                    url: ''
                 }
             ])
         };
@@ -48,18 +48,19 @@ export default class Main extends Component {
             .then((response) => response.json())
             .then((responseJSON) => {
                 console.log(responseJSON);
+                this.setState({dataSource: ds.cloneWithRows(responseJSON.events)});
             });
         }).catch((err) => console.log('Error', err));
     }
 
     renderRow(rowData) {
         return (
-            <View>
+            <View style={styles.row}>
                 <Text>
                     {rowData.name.text}
                 </Text>
                 <Text>
-                    {rowData.url}
+                    more details
                 </Text>
             </View>
         );
@@ -85,10 +86,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     list: {
-        flex: 1
+        flex: 8
     },
     title: {
         flex: 1,
         marginTop: 40
+    },
+    row: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
