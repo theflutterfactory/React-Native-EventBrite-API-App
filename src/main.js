@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    ListView
+    ListView,
+    Image
 } from 'react-native';
 import Geocoder from 'react-native-geocoder';
 
@@ -54,17 +55,24 @@ export default class Main extends Component {
     }
 
     renderRow(rowData) {
+        const defaultImage = 'https://pixabay.com/static/uploads/photo/2015/02/13/09/47/question-634903__180.png';
+        let image = rowData.logo ? rowData.logo.url : defaultImage;
+        
         return (
             <View style={styles.row}>
-                <Text>
-                    {rowData.name.text.length > 30 ?
-                        `${rowData.name.text.substring(0,30)}...` :
-                        rowData.name.text
-                    }
-                </Text>
-                <Text>
-                    more details
-                </Text>
+                <Image style={styles.rowLogo}
+                    source={{uri: image}}/>
+                <View style={styles.rowDetails}>
+                    <Text>
+                        {rowData.name.text.length > 30 ?
+                            `${rowData.name.text.substring(0,30)}...` :
+                            rowData.name.text
+                        }
+                    </Text>
+                    <Text>
+                        more details
+                    </Text>
+                </View>
             </View>
         );
     }
@@ -85,8 +93,6 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
     },
     list: {
         flex: 8
@@ -97,7 +103,21 @@ const styles = StyleSheet.create({
     },
     row: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5
+    },
+    rowDetails: {
+        flex: 5,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    rowLogo: {
+        flex: 1,
+        width: 50,
+        height: 50,
+        borderColor: 'black',
+        borderWidth: 1
     }
 });
