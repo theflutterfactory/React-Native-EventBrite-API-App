@@ -78,7 +78,7 @@ export default class Events extends Component {
                             rowData.name.text
                         }
                     </Text>
-                    <TouchableOpacity onPress={() => this.showDetails()}>
+                    <TouchableOpacity onPress={() => this.showDetails(rowData)}>
                         <Text style={styles.link}>more details</Text>
                     </TouchableOpacity>
                 </View>
@@ -86,9 +86,13 @@ export default class Events extends Component {
         );
     }
 
-    showDetails() {
+    showDetails(rowData) {
         this.props.navigator.push({
-            name: 'eventDetail'
+            name: 'eventDetail',
+            title: rowData.name.text,
+            decription: rowData.description.text,
+            url: rowData.url,
+            img: rowData.logo.url
         });
     }
 

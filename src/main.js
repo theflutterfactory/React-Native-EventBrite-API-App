@@ -21,9 +21,17 @@ export default class Main extends Component {
 
     renderScene(route, navigator) {
         let Component = routes[route.name];
+
+        let {title, description, url, img} = route;
+
         return (
-            //Pass Navigator component so child components can access it
-            <Component navigator={navigator}/>
+            //Pass Navigator component so child components can access props
+            <Component
+                navigator={navigator}
+                title={title}
+                description={description}
+                url={url}
+                img={img}/>
         );
     }
 }

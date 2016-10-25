@@ -10,6 +10,10 @@ export default class EventDetail extends Component {
         return (
             <View style={styles.container}>
                 <Text>Event Detail</Text>
+                <Text>{this.props.title}</Text>
+                <Text>{this.props.description}</Text>
+                <Text>{this.props.img}</Text>
+                <Text>{this.props.url}</Text>
             </View>
         );
     }
