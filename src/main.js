@@ -6,7 +6,8 @@ import {
     StyleSheet,
     ListView,
     Image,
-    Platform
+    Platform,
+    TouchableOpacity
 } from 'react-native';
 import Geocoder from 'react-native-geocoder';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -91,64 +92,82 @@ export default class Main extends Component {
                 <View style={styles.form}>
                     <TextInput style={styles.input}
                         placeholder='kind of event...'
+                        underlineColorAndroid={'transparent'}
                         onChangeText={(text) => this.setState({eventType: text})}/>
                     <TextInput style={styles.input}
                         placeholder='city...'
                         onChangeText={(text) => this.setState({city: text})}/>
                 </View>
+                <TouchableOpacity style={styles.buttonContainer}
+                    onPress={() =>
+                    this.searchEvents(this.state.eventType, this.state.city)}>
+                    <Text style={styles.button}>Search</Text>
+                </TouchableOpacity>
                 <ListView
                     style={styles.list}
                     dataSource={this.state.dataSource}
+                    enableEmptySections={true}
                     renderRow={(rowData) => this.renderRow(rowData)}/>
             </View>
-        );
+            );
+        }
     }
-}
 
-const styles = EStyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    list: {
-        flex: 10
-    },
-    title: {
-        flex: 1,
-        marginTop: 40,
-        textAlign: 'center',
-        fontSize: 20
-    },
-    form: {
-        flex: 4
-    },
-    row: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 5
-    },
-    rowDetails: {
-        flex: 5,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    rowLogo: {
-        flex: 1,
-        width: 50,
-        height: 50,
-        borderColor: 'black',
-        borderWidth: 1
-    },
-    input: {
-        flex: 1,
-        '@media ios':{
+    const styles = EStyleSheet.create({
+        container: {
+            flex: 1,
+        },
+        list: {
+            flex: 10
+        },
+        title: {
+            flex: 1,
+            marginTop: 40,
+            textAlign: 'center',
+            fontSize: 20
+        },
+        form: {
+            flex: 4
+        },
+        row: {
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 5
+        },
+        rowDetails: {
+            flex: 5,
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        rowLogo: {
+            flex: 1,
+            width: 50,
+            height: 50,
+            borderColor: 'black',
+            borderWidth: 1
+        },
+        input: {
+            flex: 1,
             borderWidth: 1,
             borderRadius: 5,
             borderColor: 'black',
+            margin: 5,
+            textAlign: 'center',
+            fontSize: 16
         },
-        margin: 5,
-        textAlign: 'center',
-        fontSize: 16
-    }
-});
+        buttonContainer: {
+            flex: 1,
+            padding: 5
+        },
+        button: {
+            flex: 1,
+            borderColor: 'blue',
+            borderRadius: 5,
+            borderWidth: 1,
+            textAlign: 'center',
+            padding: 10,
+            color: 'blue'
+        }
+    });
