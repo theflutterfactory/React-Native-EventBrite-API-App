@@ -57,7 +57,10 @@ export default class Main extends Component {
         return (
             <View style={styles.row}>
                 <Text>
-                    {rowData.name.text}
+                    {rowData.name.text.length > 30 ?
+                        `${rowData.name.text.substring(0,30)}...` :
+                        rowData.name.text
+                    }
                 </Text>
                 <Text>
                     more details
