@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
+    TextInput,
     StyleSheet,
     ListView,
-    Image
+    Image,
+    Platform
 } from 'react-native';
 import Geocoder from 'react-native-geocoder';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
+EStyleSheet.build();
 
 //Normally wouldn't store my token this way if this were a production app :)
 const API_TOKEN = 'Bearer 4H6ELX745M6BUM6W7A4C';
@@ -24,7 +29,9 @@ export default class Main extends Component {
                     },
                     url: ''
                 }
-            ])
+            ]),
+            eventType: '',
+            city: ''
         };
     }
 
@@ -57,7 +64,7 @@ export default class Main extends Component {
     renderRow(rowData) {
         const defaultImage = 'https://pixabay.com/static/uploads/photo/2015/02/13/09/47/question-634903__180.png';
         let image = rowData.logo ? rowData.logo.url : defaultImage;
-        
+
         return (
             <View style={styles.row}>
                 <Image style={styles.rowLogo}
@@ -81,6 +88,14 @@ export default class Main extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Event Search</Text>
+                <View style={styles.form}>
+                    <TextInput style={styles.input}
+                        placeholder='kind of event...'
+                        onChangeText={(text) => this.setState({eventType: text})}/>
+                    <TextInput style={styles.input}
+                        placeholder='city...'
+                        onChangeText={(text) => this.setState({city: text})}/>
+                </View>
                 <ListView
                     style={styles.list}
                     dataSource={this.state.dataSource}
@@ -90,16 +105,21 @@ export default class Main extends Component {
     }
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         flex: 1,
     },
     list: {
-        flex: 8
+        flex: 10
     },
     title: {
         flex: 1,
-        marginTop: 40
+        marginTop: 40,
+        textAlign: 'center',
+        fontSize: 20
+    },
+    form: {
+        flex: 4
     },
     row: {
         flex: 1,
@@ -119,5 +139,16 @@ const styles = StyleSheet.create({
         height: 50,
         borderColor: 'black',
         borderWidth: 1
+    },
+    input: {
+        flex: 1,
+        '@media ios':{
+            borderWidth: 1,
+            borderRadius: 5,
+            borderColor: 'black',
+        },
+        margin: 5,
+        textAlign: 'center',
+        fontSize: 16
     }
 });
