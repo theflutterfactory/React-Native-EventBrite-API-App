@@ -78,12 +78,18 @@ export default class Events extends Component {
                             rowData.name.text
                         }
                     </Text>
-                    <Text>
-                        more details
-                    </Text>
+                    <TouchableOpacity onPress={() => this.showDetails()}>
+                        <Text style={styles.link}>more details</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
+    }
+
+    showDetails() {
+        this.props.navigator.push({
+            name: 'eventDetail'
+        });
     }
 
     render() {
@@ -169,6 +175,9 @@ export default class Events extends Component {
             borderWidth: 1,
             textAlign: 'center',
             padding: 10,
+            color: 'blue'
+        },
+        link: {
             color: 'blue'
         }
     });
