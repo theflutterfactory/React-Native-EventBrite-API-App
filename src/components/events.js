@@ -127,6 +127,7 @@ export default class Events extends Component {
             marginTop: 40,
             textAlign: 'center',
             fontSize: 20
+            fontFamily: 'MerryChristmasFlake'
         },
         form: {
             flex: 4
