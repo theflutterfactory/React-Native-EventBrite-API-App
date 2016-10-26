@@ -9,4 +9,4 @@ RN Event Search app utilizing the EventBrite API
 ![android events](screenshots/android_events.png)
 ![android event details](screenshots/android_event_detail.png)
 ![ios events](screenshots/ios_events.png)
-![ios event details](screenshots/ios_event_details.png)
+![ios event details](screenshots/ios_event_detail.png)
