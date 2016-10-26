@@ -30,10 +30,6 @@ export default class Events extends Component {
         };
     }
 
-    componentDidMount(){
-        this.searchEvents('salsa dancing', 'San Francisco');
-    }
-
     searchEvents(category, city) {
         Geocoder.geocodeAddress(city).then(geoCodeResponse => {
             let position = geoCodeResponse[0].position;
@@ -87,6 +83,12 @@ export default class Events extends Component {
         });
     }
 
+    renderSeparator(sectionID, rowID) {
+        return (
+            <View style={styles.separator} key={sectionID + rowID} />
+        );
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -109,6 +111,7 @@ export default class Events extends Component {
                     style={styles.list}
                     dataSource={this.state.dataSource}
                     enableEmptySections={true}
+                    renderSeparator={this.renderSeparator}
                     renderRow={(rowData) => this.renderRow(rowData)}/>
             </View>
             );
@@ -123,10 +126,10 @@ export default class Events extends Component {
             flex: 10
         },
         title: {
-            flex: 1,
-            marginTop: 40,
+            flex: 2,
             textAlign: 'center',
-            fontSize: 20
+            fontSize: 50,
+            marginTop: 20,
             fontFamily: 'MerryChristmasFlake'
         },
         form: {
@@ -137,7 +140,7 @@ export default class Events extends Component {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 5
+            padding: 10
         },
         rowDetails: {
             flex: 5,
@@ -149,31 +152,39 @@ export default class Events extends Component {
             width: 50,
             height: 50,
             borderColor: 'black',
-            borderWidth: 1
+            borderWidth: 1,
+            resizeMode: 'contain'
         },
         input: {
             flex: 1,
             borderWidth: 1,
             borderRadius: 5,
             borderColor: 'black',
-            margin: 5,
+            margin: 10,
             textAlign: 'center',
             fontSize: 16
         },
         buttonContainer: {
             flex: 1,
-            padding: 5
+            padding: 10
         },
         button: {
             flex: 1,
-            borderColor: 'blue',
+            backgroundColor: 'deepskyblue',
             borderRadius: 5,
+            borderColor: 'grey',
             borderWidth: 1,
+            overflow: 'hidden',
             textAlign: 'center',
             padding: 10,
-            color: 'blue'
+            color: 'white',
+            fontWeight: 'bold'
         },
         link: {
             color: 'blue'
+        },
+        separator: {
+            height: 1,
+            backgroundColor: 'gray'
         }
     });

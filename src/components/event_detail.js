@@ -39,7 +39,8 @@ export default class EventDetail extends Component {
                         style={styles.detailImg}
                         source={{uri: this.props.img}}/>
                     <Text style={styles.title}>{this.props.title}</Text>
-                    <ScrollView style={styles.description}>
+                    <ScrollView style={styles.description}
+                        automaticallyAdjustContentInsets={false}>
                         <Text>{this.props.description}</Text>
                     </ScrollView>
                 </View>
