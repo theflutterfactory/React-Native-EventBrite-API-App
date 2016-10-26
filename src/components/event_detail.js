@@ -11,7 +11,8 @@ export default class EventDetail extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigator.pop()}>
                         <Text style={styles.link}>Back</Text>
                     </TouchableOpacity>
                     <TouchableOpacity >
@@ -32,7 +33,8 @@ export default class EventDetail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'white'
     },
     header: {
         flex: 1,
