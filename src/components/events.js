@@ -24,14 +24,7 @@ export default class Events extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: ds.cloneWithRows([
-                {
-                    name: {
-                        text: ''
-                    },
-                    url: ''
-                }
-            ]),
+            dataSource: ds.cloneWithRows([]),
             eventType: '',
             city: ''
         };
@@ -43,8 +36,6 @@ export default class Events extends Component {
 
     searchEvents(category, city) {
         Geocoder.geocodeAddress(city).then(geoCodeResponse => {
-            console.log('res', geoCodeResponse);
-
             let position = geoCodeResponse[0].position;
             let locationString = `&location.latitude=${position.lat}&location.longitude=${position.lng}`;
             let FETCH_URL = `${SEARCH_URL}?q=${category}${locationString}`;
@@ -90,7 +81,7 @@ export default class Events extends Component {
         this.props.navigator.push({
             name: 'eventDetail',
             title: rowData.name.text,
-            decription: rowData.description.text,
+            description: rowData.description.text,
             url: rowData.url,
             img: rowData.logo.url
         });

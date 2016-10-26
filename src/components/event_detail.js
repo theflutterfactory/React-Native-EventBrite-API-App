@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 
 export default class EventDetail extends Component {
@@ -25,9 +26,9 @@ export default class EventDetail extends Component {
                         style={styles.detailImg}
                         source={{uri: this.props.img}}/>
                     <Text style={styles.title}>{this.props.title}</Text>
-                    <Text>{this.props.description}</Text>
-                    <Text>{this.props.img}</Text>
-                    <Text>{this.props.url}</Text>
+                    <ScrollView style={styles.description}>
+                        <Text>{this.props.description}</Text>
+                    </ScrollView>
                 </View>
             </View>
         );
@@ -65,5 +66,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         padding: 5
+    },
+    description: {
+        padding: 10
     }
 });
