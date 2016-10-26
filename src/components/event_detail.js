@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 
 export default class EventDetail extends Component {
@@ -20,8 +21,10 @@ export default class EventDetail extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.body}>
-                    <Text>Event Detail</Text>
-                    <Text>{this.props.title}</Text>
+                    <Image
+                        style={styles.detailImg}
+                        source={{uri: this.props.img}}/>
+                    <Text style={styles.title}>{this.props.title}</Text>
                     <Text>{this.props.description}</Text>
                     <Text>{this.props.img}</Text>
                     <Text>{this.props.url}</Text>
@@ -43,9 +46,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     body: {
-        flex: 19
+        flex: 19,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     link: {
         color: 'blue'
+    },
+    detailImg: {
+        height: 200,
+        width: 200,
+        borderRadius: 100,
+        borderColor: 'black',
+        borderWidth: 1
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        textAlign: 'center',
+        padding: 5
     }
 });
