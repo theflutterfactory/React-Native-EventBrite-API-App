@@ -5,10 +5,22 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
-    ScrollView
+    ScrollView,
+    Linking
 } from 'react-native';
 
 export default class EventDetail extends Component {
+
+    openUrl(url) {
+        Linking.canOpenURL(url).then(supported => {
+            if(supported) {
+                Linking.openURL(url);
+            } else {
+                console.log(`Can't open: ${url}`);
+            }
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -17,7 +29,8 @@ export default class EventDetail extends Component {
                         onPress={() => this.props.navigator.pop()}>
                         <Text style={styles.link}>Back</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity >
+                    <TouchableOpacity
+                        onPress={() => this.openUrl(this.props.url)}>
                         <Text style={styles.link}>Full Details</Text>
                     </TouchableOpacity>
                 </View>
